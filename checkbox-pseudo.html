@@ -131,18 +131,31 @@ Accordion CSS
 	margin:0px;
 }
 
-item.sub-items-show>.sub-items {
+.item.sub-items-show>.sub-items {
 	max-height: 1200px;
 }
-.items item > input {
+.item > input {
 	margin: 0;
 	width: 20%;
-	height: 20px;
+	height: 0px;
 	outline: none;
 	border: none;
 	z-index: 100;
 	cursor: pointer;
 }
+.item > input::after {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	content: "";
+	background-repeat: no-repeat;
+	background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMSAxNCc+PHBhdGggZmlsbD0nI2ZmZicgZD0nTTkuMTQ4IDIuMzUybC00LjE0OCA0LjE0OCA0LjE0OCA0LjE0OHEwLjE0OCAwLjE0OCAwLjE0OCAwLjM1MnQtMC4xNDggMC4zNTJsLTEuMjk3IDEuMjk3cS0wLjE0OCAwLjE0OC0wLjM1MiAwLjE0OHQtMC4zNTItMC4xNDhsLTUuNzk3LTUuNzk3cS0wLjE0OC0wLjE0OC0wLjE0OC0wLjM1MnQwLjE0OC0wLjM1Mmw1Ljc5Ny01Ljc5N3EwLjE0OC0wLjE0OCAwLjM1Mi0wLjE0OHQwLjM1MiAwLjE0OGwxLjI5NyAxLjI5N3EwLjE0OCAwLjE0OCAwLjE0OCAwLjM1MnQtMC4xNDggMC4zNTJ6Jy8+PC9zdmc+);
+}
+
+.item > input:checked::after {
+	transform: rotate(-90deg);
+}
+
 .toggle {
 	
 }
@@ -152,6 +165,7 @@ item.sub-items-show>.sub-items {
 	align-items: center;
 	justify-content: space-between;
 }
+/*
 .toggfter::after {
 	display: inline-block;
 	width: 18px;
@@ -160,6 +174,7 @@ item.sub-items-show>.sub-items {
 	background-repeat: no-repeat;
 	background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMSAxNCc+PHBhdGggZmlsbD0nI2ZmZicgZD0nTTkuMTQ4IDIuMzUybC00LjE0OCA0LjE0OCA0LjE0OCA0LjE0OHEwLjE0OCAwLjE0OCAwLjE0OCAwLjM1MnQtMC4xNDggMC4zNTJsLTEuMjk3IDEuMjk3cS0wLjE0OCAwLjE0OC0wLjM1MiAwLjE0OHQtMC4zNTItMC4xNDhsLTUuNzk3LTUuNzk3cS0wLjE0OC0wLjE0OC0wLjE0OC0wLjM1MnQwLjE0OC0wLjM1Mmw1Ljc5Ny01Ljc5N3EwLjE0OC0wLjE0OCAwLjM1Mi0wLjE0OHQwLjM1MiAwLjE0OGwxLjI5NyAxLjI5N3EwLjE0OCAwLjE0OCAwLjE0OCAwLjM1MnQtMC4xNDggMC4zNTJ6Jy8+PC9zdmc+);
 }
+*/
 .toggle:checked ~ .sub-items {
     max-height: 10000px;
 }
@@ -185,7 +200,7 @@ item.sub-items-show>.sub-items {
 					<span href="#" class="toggfter">Yahoo</span>
 					<input type="checkbox" class="toggle" />
 					<ul class="sub-items">
-						<li class="sub-item">abc</li>
+						<li class="sub-item">abc<input type="checkbox" /></li>
 						<li class="sub-item">cdf</li>
 						<li class="sub-item">gjk</li>
 					</ul>
