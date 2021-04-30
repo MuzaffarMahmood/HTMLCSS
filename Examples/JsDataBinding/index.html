@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Vanilla JS Data Binding</title>
+	</head>
+	<body>
+		<main>
+			<input data-bind="value: name" placeholder="Enter name">
+			<input data-bind="value: surname" placeholder="Enter surname">
+			<br>
+			<br>
+			<span>Entered Person</span>
+			<br>
+			<span data-bind="text: name"></span>
+			<span data-bind="text: surname"></span>
+		</main>
+	</body>
+	<script src="js/TextBindingHandler.js"></script>
+	<script src="js/ValueBindingHandler.js"></script>
+	<script src="js/Binder.js"></script>
+	<script src="js/Binding.js"></script>
+	<script src="js/App.js"></script>
+</html>

@@ -1,0 +1,371 @@
+<!--
+An array A consisting of N integers is given. A triplet (P, Q, R) is triangular if it is possible to build a triangle with sides of lengths A[P], A[Q] and A[R]. In other words, triplet (P, Q, R) is triangular if 0 ≤ P < Q < R < N and:
+
+A[P] + A[Q] > A[R],
+A[Q] + A[R] > A[P],
+A[R] + A[P] > A[Q].
+For example, consider array A such that:
+
+  A[0] = 10    A[1] = 2    A[2] = 5
+  A[3] = 1     A[4] = 8    A[5] = 12
+There are four triangular triplets that can be constructed from elements of this array, namely (0, 2, 4), (0, 2, 5), (0, 4, 5), and (2, 4, 5).
+
+Write a function:
+
+class Solution { public int solution(int[] A); }
+
+that, given an array A consisting of N integers, returns the number of triangular triplets in this array.
+
+For example, given array A such that:
+
+  A[0] = 10    A[1] = 2    A[2] = 5
+  A[3] = 1     A[4] = 8    A[5] = 12
+the function should return 4, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [0..1,000];
+each element of array A is an integer within the range [1..1,000,000,000].
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+
+let bubbleSort = (inputArr) => {
+	debugger;
+    let len = inputArr.length;
+    for (let i = 0; i < len; i++) {
+		debugger;
+        for (let j = 0; j < len; j++) {
+            if (inputArr[j] > inputArr[j + 1]) {
+                let tmp = inputArr[j];
+                inputArr[j] = inputArr[j + 1];
+                inputArr[j + 1] = tmp;
+            }
+        }
+    }
+    return inputArr;
+};
+
+var list = [1,5,8,3,9,2];
+//bubbleSort(list);
+
+
+function findSmallestPositiveInt(A) {
+    l = A.length;
+    for(i = 0; i < l; i++){
+        smallest = A[i];
+        for(j=i; j < l; j++){
+            if(A[j] < A[i]){
+                t = A[i];
+                A[i] = A[j];
+                A[j] = t;
+            }
+        }
+    }
+    console.log(A);
+    smallest = A[0];
+    if(smallest <=0) smallest=0;
+    for(a=1; a<l; a++){
+		if(A[a] <=0) continue;
+		if(A[a] != A[a-1]) smallest++;
+        if(smallest != A[a]){
+            return smallest;
+        }
+    }
+	return ++smallest;
+}
+<!-- var list =  [1, 3, 6, 4, 1, 2]; -->
+<!-- sm = findSmallestPositiveInt(list); -->
+<!-- console.log(sm); -->
+
+<!-- var list =   [1, 2, 3]; -->
+<!-- sm = findSmallestPositiveInt(list); -->
+<!-- console.log(sm); -->
+
+<!-- var list =  [-1, -3] -->
+<!-- sm = findSmallestPositiveInt(list); -->
+<!-- console.log(sm); -->
+
+<!-- var list =  [-1, 3, -6, 4, -1, 2]; -->
+<!-- sm = findSmallestPositiveInt(list); -->
+<!-- console.log(sm); -->
+
+<!-- var list =  [-1, 3, -6, 4, -1, 2]; -->
+<!-- sm = findSmallestPositiveInt(list); -->
+<!-- console.log(sm); -->
+
+var arrO = [];
+var i=0,j=0,k=0;
+function generateTriplets(A){
+	n = A.length;
+	for(i=0;i<n;i++){
+		j=i+1;
+		for(;j<n;j++){
+			k=j+1;
+			for(;k<n;k++){
+				//j++;
+				console.log(i, ",", j, ",", k);
+				arr = [];
+				arr.push(i);
+				arr.push(j);
+				arr.push(k);
+				arrO.push(arr);
+				if(
+					( (A[i]+A[j]) > A[k] )&&
+					( (A[j]+A[k]) > A[i] )&&
+					( (A[i]+A[k]) > A[j] )
+				){
+					console.log("it is golden.");
+					return 1;
+				}
+			}
+			k++;
+			if(k==n) continue;
+		}
+		if(j==n) continue;
+	}
+	return 0;
+}
+<!-- generateTriplets(3); -->
+<!-- generateTriplets(4); -->
+<!-- generateTriplets(5); -->
+var input = [10,2,5,1,8,20];
+<!-- var input = [10,50,5,1]; -->
+var n = input.length;
+var result = generateTriplets(input);
+
+console.log(arrO);
+
+console.log("result is:" + result);
+
+</script>
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr  ;
+  //grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+@media (max-width: 600px) {
+  .grid-container { grid-template-columns: repeat(2, 1fr); }
+}
+.grid-container > div {
+  border: 5px solid red;
+  background-color: #222444;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+html { font-size: 22px; }
+body { padding: 1rem; }
+.cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+}
+.card {
+  background-color: dodgerblue;
+  color: white;
+  padding: 1rem;
+  height: 4rem;
+}
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+.menu {
+	display: none !important;
+    visibility: hidden;
+	background-color: red;
+	//display: table;
+	background: white;
+    border-radius: 4px;
+    border: 1px solid #dedede;
+}
+button {
+	background: white;
+	border: 0;
+	outline: none;
+}
+button + .menu:active,
+button:focus + .menu {
+    display: table;
+    visibility: visible;
+}
+ul {
+	margin: 10px;
+	padding:0;
+	list-style: none;
+}
+li {
+	list-style-type: none;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.dropbtn + .dropdown-content:active, .dropbtn:focus + .dropdown-content {
+	display: block;
+} 
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container < div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+</style>
+</head>
+<body>
+<div style="display: block;">
+	<div style="width: 20%;">abc</div>
+	<div class="">xyz</div>
+	<div>third</div>
+</div>
+<button>☰</button>
+<div class="menu">
+  <ul>
+    <li><i class="fas fa-clock"></i>
+      <button onclick="alert('Hello there!')">
+        Display Greeting
+      </button>
+    </li>
+    <li><i class="fas fa-clock"></i>
+      <button onclick="print()">
+        Print This Page
+      </button>
+    </li>
+  </ul>
+</div>
+<div class="cards">
+  <div class="card">
+	<div class="dropdown">
+		<button class="dropbtn">Dropdown</button>
+		<div id="myDropdown" class="dropdown-content">
+		<a href="#">Link 1</a>
+		<a href="#">Link 2</a>
+		<a href="#">Link 3</a>
+		</div>
+		</div>
+	</div>
+  <div class="card"><div id="spinner-div"><svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve"><script type="text/ecmascript" xlink:href="//faviconer.net/jscripts/smil.user.js"/><g><circle cx="16" cy="64" r="16" fill="#000"/><circle cx="16" cy="64" r="16" fill="#555" transform="rotate(45,64,64)"/><circle cx="16" cy="64" r="16" fill="#949494" transform="rotate(90,64,64)"/><circle cx="16" cy="64" r="16" fill="#ccc" transform="rotate(135,64,64)"/><circle cx="16" cy="64" r="16" fill="#e1e1e1" transform="rotate(180,64,64)"/><circle cx="16" cy="64" r="16" fill="#e1e1e1" transform="rotate(225,64,64)"/><circle cx="16" cy="64" r="16" fill="#e1e1e1" transform="rotate(270,64,64)"/><circle cx="16" cy="64" r="16" fill="#e1e1e1" transform="rotate(315,64,64)"/><animateTransform attributeName="transform" type="rotate" values="0 64 64;315 64 64;270 64 64;225 64 64;180 64 64;135 64 64;90 64 64;45 64 64" calcMode="discrete" dur="720ms" repeatCount="indefinite"></animateTransform></g></svg></div></div>
+  <div class="card">THREE</div>
+  <div class="card">FOUR</div>
+  <div class="card">FIVE</div>
+  <div class="card">SIX</div>
+  <div class="card">SEVEN</div>
+  <div class="card">EIGHT</div>
+  <div class="card">NINE</div>
+  <div class="card">TEN</div>
+  <div class="card">ELEVEN</div>
+  <div class="card">TWELVE</div>
+</div>
+
+<div class="grid-container">
+	<div id="nav" class="item1">
+		<nav id="nav">
+		<ul id="navigation">
+			<li><a href="#" class="first">Home</a></li>
+			<li><a href="#">Services &raquo;</a>
+				<ul>
+					<li><a href="#">Web Development</a></li>
+					<li><a href="#">Logo Design</a></li>
+					<li><a href="#">Identity & Branding &raquo;</a>
+						<ul>
+							<li><a href="#">Business Cards</a></li>
+							<li><a href="#">Brochures</a></li>
+							<li><a href="#">Envelopes</a></li>
+							<li><a href="#">Flyers</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Wordpress</a></li>
+				</ul>
+			</li>
+			<li><a href="#">Portfolio &raquo;</a>
+				<ul>
+					<li><a href="#">Graphic Design</a></li>
+					<li><a href="#">Photography</a></li>
+					<li><a href="#">Architecture</a></li>
+					<li><a href="#">Calligraphy</a></li>
+					<li><a href="#">Film &raquo;</a>
+						<ul>
+							<li><a href="#">John Carter</a></li>
+							<li><a href="#">The Avengers</a></li>
+							<li><a href="#">The Amazing SpiderMan</a></li>
+							<li><a href="#">Madagascar 3</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Graffity </a></li>
+				</ul>
+			</li>
+			<li><a href="#">Testimonials</a></li>
+			<li><a href="#">Blog</a></li>
+			<li><a href="#" class="last">Contact</a></li>
+		</ul>
+		</nav>
+	</div>
+	<div class="item2">2</div>
+	<div class="item3">3</div>  
+	<div class="item4">4</div>
+	<div class="item5">5</div>
+	<div class="item6">6</div>
+	<div class="item7">7</div>
+	<div class="item8">8</div>
+	<div class="item1">1</div>
+	<div class="item2">2</div>
+	<div class="item3">3</div>  
+	<div class="item4">4</div>
+	<div class="item5">5</div>
+	<div class="item6">6</div>
+	<div class="item7">7</div>
+	<div class="item8">8</div>
+</div>
+
+
+</body>
+</html>
